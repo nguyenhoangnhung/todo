@@ -1,0 +1,30 @@
+.container {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-shadow: 1px 1px #cccccc;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin-top: 10px;
+}
+.input01 {
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+}
+.buttonAdd {
+    width: 100px;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    background-color: #115fd2;
+    color: #ffffff;
+    border-radius: 5px;
+}
+.output {
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
