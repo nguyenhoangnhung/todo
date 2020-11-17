@@ -1,26 +1,26 @@
+import TodoTask from "../components/TodoTask";
+import React from "react";
+
 export default class Hello extends React.Component {
     render() {
         return (
             <>
-                <h1>First post</h1>
-                <div>cskcn</div>
-                <div> helloworld <Button a={2}/> <Button a={3}>5</Button></div>
+
+                <div> helloworld <TodoList a={2}/></div>
             </>
         );
     }
 }
 
-class Button extends React.Component {
+class TodoList extends React.Component {
     state = {
-        value: "inout",
-        c: 5,
+        value: "",
         todoList: [1, 2, 3]
 
     }
 
     onChange = (e) => {
         const inputValue = e.target.value;
-        console.log("input", inputValue)
         this.setState({value: inputValue})
     }
 
@@ -34,32 +34,39 @@ class Button extends React.Component {
         todoList.push(value);
         this.forceUpdate();
     }
+    onDelete = (todo) => {
+        const todoList = this.state.todoList;
+        const newTodoList = [];
+        for (let i = 0; i < todoList.length; i++) {
+            if (todoList[i] === todo) {
+                continue;
+            }
+            newTodoList.push(todoList[i]);
+        }
+        const todoL = todoList.filter(todoElement => todoElement !== todo);
+        this.setState({todoList: newTodoList})
+    }
 
     renderTodoList = () => {
         const todoList = this.state.todoList;
         const todoListToRender = [];
         for (let i = 0; i < todoList.length; i++) {
             const todo = todoList[i];
-            todoListToRender.push(<div className={"output"}>{todo}</div>);
+            todoListToRender.push(<TodoTask todo={todo} onDelete={this.onDelete}/>);
         }
         return todoListToRender;
     }
 
-    renderA = () => {
-        return [<div>a</div>, <div>b</div>]
-    }
-
     render() {
-        const result = this.props.a + this.state.c;
         return (
-            <div >
+            <div>
                 <div className={"container"}>
                     <input
                         className={"input01"}
                         placeholder={"Call to Marry? #hashtag (or select below)"} value={this.state.value}
                         onChange={this.onChange}
                     />
-                    <button className={"buttonAdd"} onClick={this.add}>CLick {this.state.value}</button>
+                    <button className={"buttonAdd"} onClick={this.add}>Add Task</button>
 
                 </div>
                 {this.renderTodoList()}
